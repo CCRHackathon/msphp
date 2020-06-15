@@ -465,7 +465,7 @@ function iniciarRoteiro(directionsService, directionsDisplay) {
               avaliacao += ''+
               '<img src="icones/'+ objeto.icon +'"><a style="margin-left: 6px;font-size: 14px;background-color: #343e78" class="badge"  ><span  class="glyphicon glyphicon-star"> </span> '  + objeto.nota + '</a><hr style="margin-top: 9px;margin-bottom: 9px;">';
             }
-            var contentString = '<div class="infos" ><font size="3"color="#660000"><b>' + result[i].nome +   '</b></font><hr></font><b> ' + avaliacao + ' <br><button class="btn btn-block button_class"  data-toggle="modal" data-target="#avaliacao" onClick="iniciarAvaliacao(' + id_local +',' + "'" + result[i].nome+ "'" + ')">avaliar</button>'+ '</div>';
+            var contentString = '<div class="infos" ><font size="3"color="#660000"><b>' + result[i].nome +   '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></font><hr></font><b> ' + avaliacao + ' <br><button class="btn btn-block button_class"  data-toggle="modal" data-target="#avaliacao" onClick="iniciarAvaliacao(' + id_local +',' + "'" + result[i].nome+ "'" + ')">avaliar</button>'+ '</div>';
             var coordinate = {lat: parseFloat(result[i].lat),lng: parseFloat(result[i].long)};
             var marcador_parada = ({
               coords: coordinate,

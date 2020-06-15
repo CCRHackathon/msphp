@@ -660,13 +660,32 @@ for($i = 0; $i < count($vetor);$i++){
 	$vetor_indice++;
 }
 
+$quantidade_categoria = 5;
 for($i = 0;$i < count($vetor_latitude);$i++){
-	$query = Conexao::getInstance()->prepare("INSERT INTO `local` (`id`, `nome`, `descricao`, `categoria`, `lat`, `long`) VALUES (:id, '', 'QWEQWEWQ', '1', :latitude, :longitude);");
+	$query = Conexao::getInstance()->prepare("INSERT INTO `local` (`id`, `nome`, `descricao`, `categoria`, `lat`, `long`) VALUES (:id, :nome, 'QWEQWEWQ', '1', :latitude, :longitude);");
 	$query->bindValue("id",$i+1);
+	$query->bindValue("nome",("Parada".$i));
 	$query->bindValue("latitude",floatval(str_replace(" ", "", $vetor_latitude[$i])));
 	$query->bindValue("longitude",floatval(str_replace(" ", "", $vetor_longitude[$i])));
 	$query->execute();
 	$query = null;
+	for($indice_categoria = 1; $indice_categoria <= $quantidade_categoria;$indice_categoria++){
+		$query = Conexao::getInstance()->prepare("INSERT INTO `servicos` (`local`, `categoria`) VALUES (:local,:categoria);");
+		$query->bindValue("local",$i+1);
+		$query->bindValue("categoria",$indice_categoria);
+		$query->execute();
+		$query = null;
+		$nota = rand(1, 5);
+		$query = Conexao::getInstance()->prepare("INSERT INTO `avaliacao` (`nota`, `categoria`, `local`) VALUES (:nota,:categoria,:local);");
+		$query->bindValue("local",$i+1);
+		$query->bindValue("nota",$nota);
+		$query->bindValue("categoria",$indice_categoria);
+		$query->execute();
+		$query = null;
+	}
+	$quantidade_categoria--;
+	if($quantidade_categoria == 1)
+		$quantidade_categoria = 5;
 }
 
 
